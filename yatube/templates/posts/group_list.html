@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% extends 'base.html' %}
+  <head>
+    {% block title %}
+      <title>{{ title }}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+    </header>
+    {% block content %}
+    <main> 
+      <h1>{{ title }}: {{ group }}</h1>
+      {% for post in posts %}
+          <br>Автор: {{ post.author.get_full_name }},
+          <br>Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        <p>{{ post.text|linebreaksbr }}</p>
+        {% if not forloop.last %}
+          <hr>
+        {% endif %}
+      {% endfor %}
+    </main>
+    {% endblock %}         
+    <footer>  
+    </footer>
+  </body>
+</html>
