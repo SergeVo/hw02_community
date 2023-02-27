@@ -1,34 +1,27 @@
-
-<!DOCTYPE html>
-<html lang="ru">
 {% extends 'base.html' %}
-  <head>
-    {% block title %}
-      <title>{{ title }}</title>
-    {% endblock %}
-  </head>
-  <body>
-    <header>
-    </header>
-    {% block content %}
-    <main>
-      <h1>{{ title }}</h1>
-      {% for post in posts %}
-  <ul>
-    <li>
-      Автор: {{ post.author.get_full_name }}
-    </li>
-    <li>
-      Дата публикации: {{ post.pub_date|date:"d E Y" }}
-    </li>
-  </ul>
-  <p>{{ post.text }}</p>    
-  <a href="">все записи группы</a>
-  {% if not forloop.last %}<hr>{% endif %}
-    {% endfor %} 
-    </main>
-    {% endblock %}         
-    <footer>
-    </footer>
-  </body>
-</html>
+
+{% block title %}
+  <title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  {% for post in page_obj %}
+    <ul>
+      <li>
+        Автор: {{ post.author.get_full_name }}
+      </li>
+      <li>
+        Дата публикации: {{ post.pub_date|date:"d E Y" }}
+      </li>
+    </ul>
+    <p>{{ post.text }}</p>    
+    {% if post.group %}
+      <a href="">все записи группы</a>
+    {% endif %}
+
+    {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %} 
+
+  {% include 'posts/includes/paginator.html' %}
+{% endblock %}         
