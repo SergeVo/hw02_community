@@ -30,8 +30,9 @@
         <li class="nav-item"> 
           <a class="nav-link link-light" href="{% url 'logout' %}">Выйти</a>
         </li>
-        <li>
-          Пользователь: {{ user.username }}
+        <li class="nav-item">
+          <a class="nav-link link-light user" href="#">Пользователь: 
+            {{ user.username }}</a>
         </li>
         {% else %}
         <li class="nav-item"> 
