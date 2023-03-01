@@ -9,7 +9,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.views import PasswordResetDoneView
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.views import PasswordResetCompleteView
-
+from django.contrib.auth.views import LogoutView
 
 # Функция reverse_lazy позволяет получить URL по параметрам функции path()
 # Берём, тоже пригодится
@@ -18,6 +18,8 @@ from django.urls import reverse_lazy
 # Импортируем класс формы, чтобы сослаться на неё во view-классе
 from .forms import CreationForm
 
+class Logout(LogoutView):
+    template_name = 'logged_out.html'
 
 class SignUp(CreateView):
     form_class = CreationForm
