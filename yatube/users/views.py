@@ -29,5 +29,5 @@ class SignUp(CreateView):
 
 class PasswordChange(PasswordChangeView):
     form_class = CreationForm
-    success_url = reverse_lazy('auth/password_change/done/')
-    template_name = '/auth/password_change_form.html'
+    success_url = reverse_lazy('password_change/done/')
+    template_name = 'users/password_change_form.html'

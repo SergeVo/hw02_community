@@ -17,7 +17,7 @@ urlpatterns = [
       name='login'
     ),
     path(
-        'auth/password_change/',
+        'password_change/',
       LoginView.as_view(template_name='users/password_change_form.html'),
       name='password_change'
     ),
