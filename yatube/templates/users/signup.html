@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-header">Зарегистрироваться</div>
           <div class="card-body">
-          {% load user_filters %} {# Загружаем фильтры #}
+          {% load user_filters %}
               {% if form.errors %}
                   {% for field in form %} 
                     {% for error in field.errors %}            
@@ -21,11 +21,8 @@
                     </div>
                   {% endfor %}
               {% endif %}
-
-              <form method="post" action="{% url 'users:signup' %}">
+            <form method="post" action="{% url 'users:signup' %}">
               {% csrf_token %}
-
-              {# Выводим поля в цикле, по отдельности #}
               {% for field in form %} 
                 <div class="form-group row my-3">
                   <label for="{{ field.id_for_label }}">
@@ -34,26 +31,22 @@
                         <span class="required text-danger">*</span>
                       {% endif %}
                   </label>
-                  {# К полю ввода добавляем атрибут class #}
                   {{ field|addclass:'form-control' }} 
-                    {% if field.help_text %}
-                      <small 
-                         id="{{ field.id_for_label }}-help"
-                         class="form-text text-muted"
-                      >
-                        {{ field.help_text|safe }}
-                      </small>
-                    {% endif %}
+                  {% if field.help_text %}
+                    <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
+                      {{ field.help_text|safe }}
+                    </small>
+                  {% endif %}
                 </div>
               {% endfor %}
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary">
                   Зарегистрироваться
-                </button>
-              </div>
+              </button>
+            </div>
             </form>
-          </div> <!-- card body -->
-        </div> <!-- card -->
-      </div> <!-- col -->
+        </div> <!-- card body -->
+      </div> <!-- card -->
+    </div> <!-- col -->
   </div> <!-- row -->
-{% endblock %}
+{% endblock %} 
